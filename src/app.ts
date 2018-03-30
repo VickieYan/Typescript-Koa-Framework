@@ -4,7 +4,9 @@ import { Loader } from './loader';
 
 const app = new Koa();
 
-const loader = new Loader();
+const loader = new Loader(app);
+
+app.context.extends = 1;
 
 app.use(loader.loadRouter());
 

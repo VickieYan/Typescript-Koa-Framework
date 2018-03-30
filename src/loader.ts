@@ -1,9 +1,38 @@
+import * as Koa from 'koa';
 import * as fs from 'fs';
 import * as Router from 'koa-router';
 import { BaseContext } from 'koa';
 export class Loader {
     router: Router = new Router();
     controller: any = {};
+    app: Koa;
+
+    constructor(app: Koa) {
+        this.app = app;
+    }
+
+    loadService() {
+        const service = fs.readdirSync(__dirname + '/service');
+        Object.defineProperty(this.app.context, 'service', {
+            get() {
+                if (!(<any>this)['cache']) {
+                    (<any>this)['cache'] = {};
+                }
+                const loaded = (<any>this)['cache'];
+                if (!loaded['service']) {
+                    loaded['service'] = {};
+                    service.forEach(d => {
+                        const name = d.split('.')[0];
+                        const mod = require(__dirname + '/service/' + d);
+
+                        loaded['service'][name] = new mod(this);
+                    });
+                    return loaded.service;
+                }
+                return loaded.service;
+            },
+        });
+    }
 
     loadController() {
         const dirs = fs.readdirSync(__dirname + '/controller');
@@ -40,6 +69,8 @@ export class Loader {
 
     loadRouter() {
         this.loadController();
+        this.loadService();
+
         const mod = require(__dirname + '/router.js');
         const routers = mod(this.controller);
         Object.keys(routers).forEach(key => {
