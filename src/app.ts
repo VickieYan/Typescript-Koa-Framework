@@ -1,16 +1,13 @@
-import * as Koa from 'koa'
-import * as Router from 'koa-router'
+import * as Koa from 'koa';
+import * as Router from 'koa-router';
+import { Loader } from './loader';
 
-const app = new Koa()
+const app = new Koa();
 
-const route = new Router()
+const loader = new Loader();
 
-route.get('/', async (ctx, next) => {
-    ctx.body = 'to be hehehe'
-})
-
-app.use(route.routes())
+app.use(loader.loadRouter());
 
 app.listen(3000, '127.0.0.1', () => {
-    console.log('server listening on port 3000')
-})
+    console.log('server listening on port 3000');
+});
