@@ -1,0 +1,27 @@
+{
+  "name": "typescript-koa-framework",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && SET NODE_ENV=development && node ./dist/app.js ",
+    "dev": "node ./node_modules/nodemon/bin/nodemon.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VickieYan/Typescript-Koa-Framework.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VickieYan/Typescript-Koa-Framework/issues"
+  },
+  "homepage": "https://github.com/VickieYan/Typescript-Koa-Framework#readme",
+  "dependencies": {
+    "@types/koa": "^2.0.44",
+    "@types/koa-router": "^7.0.27",
+    "koa": "^2.5.0",
+    "koa-router": "^7.4.0",
+    "nodemon": "^1.17.2"
+  }
+}
