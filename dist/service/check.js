@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 class Service {
-    constructor(ctx) {
+    constructor(ctx, app) {
         this.ctx = ctx;
+        this.app = app;
     }
 }
 class check extends Service {

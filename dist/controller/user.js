@@ -6,7 +6,11 @@ class User extends base_1.default {
         this.ctx.body = this.ctx.service.check.index();
     }
     async userInfo() {
-        this.ctx.body = 'hello userinfo';
+        this.ctx.body = this.getConfig().middleware[0];
+        // this.ctx.body = 'test';
+    }
+    getConfig() {
+        return this.app['config'];
     }
 }
 exports.default = User;

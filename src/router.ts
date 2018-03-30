@@ -2,5 +2,5 @@
 
 module.exports = (controller: any) => ({
     'get /': controller.user.user,
-    'get /userinfo': controller.user.userinfo,
+    'get /userinfo': controller.user.userInfo,
 });

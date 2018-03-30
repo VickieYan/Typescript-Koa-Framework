@@ -6,6 +6,11 @@ export default class User extends Controller {
     }
 
     async userInfo() {
-        this.ctx.body = 'hello userinfo';
+        this.ctx.body = this.getConfig().middleware[0];
+        // this.ctx.body = 'test';
+    }
+
+    getConfig() {
+        return (<any>this.app)['config'];
     }
 }
