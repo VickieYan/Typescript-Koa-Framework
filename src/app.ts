@@ -1,5 +1,5 @@
 import * as Koa from 'koa';
-import * as Router from 'koa-router';
+// import * as Router from 'koa-router';
 import { Loader } from './loader';
 
 const app = new Koa();

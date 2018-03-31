@@ -13,41 +13,11 @@ export class Loader {
     }
 
     loadController() {
-        // const dirs = fs.readdirSync(__dirname + '/controller');
-        // dirs.forEach(filename => {
-        //     const property = filename.split('.')[0];
-        //     const mod = require(__dirname + '/controller/' + filename).default;
-        //     if (mod) {
-        //         // ['user', 'userInfo']
-        //         const methodNames = Object.getOwnPropertyNames(
-        //             mod.prototype
-        //         ).filter(names => {
-        //             if (names !== 'constructor') {
-        //                 return names;
-        //             }
-        //         });
-        //         Object.defineProperty(this.controller, property, {
-        //             get() {
-        //                 const merge: { [key: string]: any } = {};
-        //                 methodNames.forEach(name => {
-        //                     merge[name] = {
-        //                         type: mod,
-        //                         methodName: name,
-        //                     };
-        //                 });
-        //                 return merge;
-        //             },
-        //         });
-        //     }
-        // });
-        // console.log(JSON.stringify(this.controller.user));
-        // {"user":{"methodName":"user"},"userInfo":{"methodName":"userInfo"}}
         const dirs = fs.readdirSync(__dirname + '/controller');
         dirs.forEach(filename => {
             require(__dirname + '/controller/' + filename).default;
         });
     }
-
     loadService() {
         const service = fs.readdirSync(__dirname + '/service');
         var that = this;
@@ -94,17 +64,6 @@ export class Loader {
         this.loadService();
         this.loadConfig();
 
-        // const mod = require(__dirname + '/router.js');
-        // const routers = mod(this.controller);
-        // Object.keys(routers).forEach(key => {
-        //     const [method, path] = key.split(' ');
-        //     (<any>this.router)[method](path, async (ctx: BaseContext) => {
-        //         const _class = routers[key].type;
-        //         const handler = routers[key].methodName;
-        //         const instance = new _class(ctx, this.app);
-        //         instance[handler]();
-        //     });
-        // });
         const r = bp.getRoute();
         Object.keys(r).forEach(url => {
             r[url].forEach(object => {

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Koa = require("koa");
+// import * as Router from 'koa-router';
 const loader_1 = require("./loader");
 const app = new Koa();
 const loader = new loader_1.Loader(app);
